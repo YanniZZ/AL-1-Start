@@ -37,6 +37,7 @@ namespace Advanced_Lesson_1_OOP
         /// A.L1.P6. Перегрузить следующие операторы для Transport <>,==/!= на базе физических размеров. 
         /// Продемонстрировать использование в коде. 
         /// </summary>
+        /// 
         public static void A_L1_P6_OperatorsOverloading()
         {
         }
