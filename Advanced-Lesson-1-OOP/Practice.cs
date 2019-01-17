@@ -9,26 +9,29 @@ namespace Advanced_Lesson_1_OOP
 {
     public class Practice
     {
+        private static Random _random = new Random();
         /// <summary>
         /// A.L1.P1. Вывести матрицу (двумерный массив) отображающую площадь круга, 
         /// квадрата, равнобедренного треугольника со сторонами (радиусами) от 1 до 10.
         /// </summary>
         public static void A_L1_P1_OOP()
         {
-            var arrCircle = new Circle(3);
-            var arrCircle1 = new Circle(5);
-
-            var arrSquare = new Square(3);
-            var arrSquare1 = new Square(6);
-
-            var arrTriangle = new Triangle(2,3);
-            var arrTriangle1 = new Triangle(4,5);
-
-            var arrMatrix = new ICalcArea[]{ arrCircle, arrCircle1, arrSquare, arrSquare1, arrTriangle, arrTriangle1};
-
-            foreach ( var figure in arrMatrix)
+            
+            var arrMatrix = new ICalcArea[3,10];
+            for(int i = 0; i<arrMatrix.GetLength(0); i++)
             {
-                Console.WriteLine(figure.CalcArea());
+                for (int j = 0; j < arrMatrix.GetLength(1); j++)
+                {
+                    arrMatrix[i,j] = GenerateFigure();
+                }
+            }
+            for (int i = 0; i < arrMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrMatrix.GetLength(1); j++)
+                {
+                    Console.Write("{0,5}", arrMatrix[i, j].CalcArea());
+                }
+                Console.WriteLine();
             }
         }
 
@@ -50,7 +53,7 @@ namespace Advanced_Lesson_1_OOP
         {            
         }
 
-        interface ICalcArea
+        public interface ICalcArea
         {
             double CalcArea();
         }
@@ -61,12 +64,12 @@ namespace Advanced_Lesson_1_OOP
 
             public Circle(int rad)
             {
-                this._rad = rad;
+                _rad = rad;
             }
 
             public double CalcArea()
             {
-                return Math.PI * _rad*_rad;
+                return Math.Round(Math.PI * _rad*_rad);
             }
         }
         public class Square : ICalcArea
@@ -75,7 +78,7 @@ namespace Advanced_Lesson_1_OOP
 
             public Square(int side)
             {
-                this._side = side;
+                _side = side;
             }
             public double CalcArea()
             {
@@ -85,18 +88,30 @@ namespace Advanced_Lesson_1_OOP
 
         public class Triangle : ICalcArea
         {
-            private readonly  int _side;
+            private readonly int _side;
             private readonly int _height;
 
             public Triangle(int side, int height)
             {
-                this._side = side;
-                this._height = height;
+                _side = side;
+                _height = height;
             }
 
             public double CalcArea()
             {
-                return 0.5*_side*_height;
+                return Math.Round(0.5*_side*_height);
+            }
+        }
+
+        public static ICalcArea GenerateFigure()
+        {
+            var figure = _random.Next(0, 2);
+            switch (figure)
+            {
+                case 0: return new Circle(_random.Next(1,10));
+                case 1: return new Square(_random.Next(1, 10));
+                case 2: return new Triangle(_random.Next(1, 10), _random.Next(1,10));
+                default: throw new ArgumentException("Нежданчик");
             }
         }
     }
