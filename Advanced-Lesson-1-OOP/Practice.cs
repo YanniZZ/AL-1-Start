@@ -43,6 +43,16 @@ namespace Advanced_Lesson_1_OOP
         /// 
         public static void A_L1_P6_OperatorsOverloading()
         {
+            var t1Transport = new FuelCar { Engine = 1000 };
+            var t2Transport = new FuelCar { Engine = 2000 };
+            bool compare = t1Transport < t2Transport;
+            Console.WriteLine(compare);
+            bool compare1 = t1Transport > t2Transport;
+            Console.WriteLine(compare1);
+            bool compare2 = t1Transport == t2Transport;
+            Console.WriteLine(compare2);
+            bool compare3 = t1Transport != t2Transport;
+            Console.WriteLine(compare3);
         }
 
         /// <summary>
