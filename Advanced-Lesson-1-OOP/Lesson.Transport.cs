@@ -22,7 +22,9 @@ namespace Advanced_Lesson_1_OOP
             Transport winner = maserati;
             FuelCar firstPlace = (FuelCar)winner;
 
-        }   
+            //A_L1_P6_OperatorsOverloading()
+            
+        }
     }
 
     public class Transport
@@ -55,6 +57,25 @@ namespace Advanced_Lesson_1_OOP
         {
             base.Move(km);
             this.Fuel -= km * FuelUsage / 100;
+        }
+        //A_L1_P6_OperatorsOverloading()
+        public static bool operator <(FuelCar t1Transport, FuelCar t2Transport)
+        {
+            return t1Transport.Engine < t2Transport.Engine;
+        }
+
+        public static bool operator >(FuelCar t1Transport, FuelCar t2Transport)
+        {
+            return t1Transport.Engine > t2Transport.Engine;
+        }
+
+        public static bool operator ==(FuelCar t1Transport, FuelCar t2Transport)
+        {
+            return t1Transport.Engine == t2Transport.Engine;
+        }
+        public static bool operator !=(FuelCar t1Transport, FuelCar t2Transport)
+        {
+            return t1Transport.Engine == t2Transport.Engine;
         }
     }
 
